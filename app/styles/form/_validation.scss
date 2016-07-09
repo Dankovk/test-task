@@ -1,0 +1,22 @@
+/* Barebones Compass form styles
+ *
+ * Form validation styles
+ */
+
+.has-success {
+    .form-control {
+        border-color: #14ccad;
+    }
+}
+
+.has-error {
+    .form-control {
+        border-color: #f27349;
+    }
+
+    .validation-msg {
+        color: #f27349;
+
+        margin: ($base-margin / 4) 0 0;
+    }
+}

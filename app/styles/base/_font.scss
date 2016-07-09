@@ -1,0 +1,34 @@
+/* Barebones fonts
+ *
+ * This file contains custom font imports and font stacks for different font
+ * types
+ */
+
+/* Examples of font import statements
+ *
+ * Copy and paste outside of comment section
+ *
+ * Google Fonts single font face
+ * @see http://www.google.com/fonts
+ *
+ *     @import url(http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic&subset=latin,cyrillic,cyrillic-ext);
+ *
+ * Google Fonts combination of font faces
+ * @see http://www.google.com/fonts
+ *
+ *     @import url(http://fonts.googleapis.com/css?family=Roboto:400,700|PT+Serif:400,700&subset=latin,cyrillic,cyrillic-ext);
+ *
+ *
+ *     // Example of mixin usage
+ *	   @include font-face(YourAwesomeFont, '/fonts/your-awesome-font/your-awesome-font-regular');
+ *     @include font-face(YourAwesomeFont, '/fonts/your-awesome-font/your-awesome-font-bold', bold);
+ *     @include font-face(YourAwesomeFont, '/fonts/your-awesome-font/your-awesome-font-italic', normal, italic);
+ */
+
+/* Default font stacks
+ */
+// http://fontfamily.io/Helvetica_Neue,Helvetica,Arial,sans-serif
+// http://fontfamily.io/Arial,Helvetica_Neue,Helvetica,sans-serif
+$font-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-serif: Cambria, Georgia, serif;
+$font-monospace: Consolas, monaco, monospace;

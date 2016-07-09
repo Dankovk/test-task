@@ -1,0 +1,40 @@
+/* Barebones Compass table styles
+ *
+ * Table element styles
+ */
+
+table {
+    width: 100%;
+}
+
+td,
+th {
+    text-align: left;
+
+    padding: ($base-margin / 2) 0;
+    padding-right: ($base-margin / 2);
+
+    vertical-align: top;
+
+    &.center {
+        text-align: center;
+    }
+
+    &.right {
+        text-align: right;
+    }
+}
+
+th {
+    font-weight: bold;
+
+    thead & {
+        border-bottom: 1px solid #ccc;
+    }
+}
+
+tfoot {
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 1px 0 1px 0;
+}

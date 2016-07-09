@@ -1,0 +1,46 @@
+/* Barebones Compass header styles
+ *
+ * Header element styles
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+    line-height: 1.33;
+
+    margin: $base-margin 0;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: $base-margin * 1.75;
+}
+
+h1 {
+    font-size: rem(36px);
+}
+
+h2 {
+    font-size: rem(30px);
+}
+
+h3 {
+    font-size: rem(24px);
+}
+
+h4 {
+    font-size: rem(18px);
+}
+
+h5 {
+    font-size: rem(16px);
+}
+
+h6 {
+    font-size: rem(14px);
+}

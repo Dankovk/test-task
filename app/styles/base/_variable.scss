@@ -1,0 +1,85 @@
+/* Barebones Compass variables
+ *
+ * This file should be used to redefine values used by other files. Most basic
+ * style tweaks can be done from this file
+ *
+ * Font stacks are defined within base/_font.scss
+ */
+
+/* Base typography settings
+ */
+$base-color: #555;
+$base-font-family: $font-sans-serif;
+$base-font-size: 16px;
+$base-font-style: normal;
+$base-font-weight: normal;
+$base-line-height: 1.5;
+
+/* Base visual settings
+ */
+$base-background-color: #fff;
+
+/* Base layout settings
+ */
+$base-margin: 20px;
+
+/* Sprite settings
+ */
+$sprite-layout-default: vertical;
+$sprite-spacing-default: 1px;
+
+/* Link settings
+ */
+$link-transitions: true;
+$link-transition-duration: .15s;
+$link-transition-function: linear;
+
+$link-color: #177ee6;
+$link-hover-color: #14ccad;
+$link-active-color: #3d5266;
+$link-visited-color: #5777d9;
+
+/* Button settings
+ */
+$button-transitions: true;
+$button-transition-duration: .15s;
+$button-transition-function: linear;
+
+/* Layout settings
+ */
+$layout-container-width: 940px;
+
+/* Layout grid settings
+ *
+ * NOTE: grid container is usually placed inside .layout-container element. This
+ * means the grid is limited by $layout-container-width. That is why the following
+ * condition should be met:
+ *
+ *     $width:   $layout-grid-column-width;
+ *     $columns: $layout-grid-columns;
+ *     $spacing: $layout-grid-column-spacing;
+ *
+ *     $layout-container-width == ($width * $columns) + ($spacing * ($columns - 1))
+ */
+$layout-grid-columns:        12;
+$layout-grid-column-width:   60px;
+$layout-grid-column-spacing: 20px;
+
+$layout-header-fixed: true;
+$layout-header-height: 50px;
+
+
+/* Sticky footer settings
+ *
+ * To use sticky footer, set the following value to true. Layout footer height
+ * setting is required for the sticky footer to work
+ *
+ * Your layout markup should only have two elements within the body:
+ * .layout-content and .layout-footer. All other elements should be within
+ * .layout-content
+ */
+$layout-footer-sticky: true;
+$layout-footer-height: 100px;
+
+$layout-aside-width: 300px;
+$layout-aside-margin-right: 10px;

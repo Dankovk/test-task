@@ -1,0 +1,40 @@
+/* Barebones Compass layout styles
+ *
+ * Footer styles
+ */
+
+.layout-footer {
+    background-color: #f0f2f5;
+
+    @if ($layout-footer-height > 0) {
+        height: $layout-footer-height;
+    }
+}
+
+$layout-footer-sticky: false !default;
+
+@if ($layout-footer-sticky != false and $layout-footer-height > 0) {
+    html,
+    body {
+        height: 100%;
+    }
+
+    .layout-content {
+        clear: both;
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        margin-bottom: -$layout-footer-height;
+    }
+
+    .layout-content:after {
+        content: "";
+        display: block;
+        height: $layout-footer-height;
+    }
+
+    .layout-footer {
+        clear: both;
+        position: relative;
+    }
+}

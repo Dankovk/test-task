@@ -1,0 +1,27 @@
+/* Barebones Compass form styles
+ *
+ * General form styles
+ */
+
+select,
+label {
+    cursor: pointer;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin: 3px 0 0;
+    line-height: normal;
+}
+
+@include text-input {
+    // Styles for text elements
+}
+
+.form {
+    margin: 0;
+}
+
+.form-container {
+    margin: $base-margin 0;
+}

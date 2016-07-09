@@ -1,0 +1,211 @@
+/* Barebones Compass mixins
+ *
+ * Contains custom mixins in use within the project
+ *
+ * See individual mixins for more info
+ */
+
+/* Base diff mixin
+ *
+ * Redefines basic typography settings and background, but only if they differ
+ * from base values:
+ *
+ *     .my-class {
+ *         base-diff(#000, $font-sans-serif, 32px);
+ *     }
+ *
+ * Base values are defined in base/_variable.scss
+ *
+ * @uses $base-color
+ * @uses $base-font-family
+ * @uses $base-font-size
+ * @uses $base-font-style
+ * @uses $base-font-weight
+ * @uses $base-line-height
+ * @uses $base-background-color
+ */
+@mixin base-diff ($color: false,
+        $font-family: false,
+        $font-size: false,
+        $font-style: false,
+        $font-weight: false,
+        $line-height: false,
+        $background-color: false) {
+
+    @if $color and $color != $base-color {
+        color: $color;
+    }
+
+    @if $font-family and $font-family != $base-font-family {
+        font-family: $font-family;
+    }
+
+    @if $font-size and $font-size != $base-font-size {
+        font-size: $font-size;
+    }
+
+    @if $font-style and $font-style != $base-font-style {
+        font-style: $font-style;
+    }
+
+    @if $font-weight and $font-weight != $base-font-weight {
+        font-weight: $font-weight;
+    }
+
+    @if $line-height and $line-height != $base-line-height {
+        line-height: $line-height;
+    }
+
+    @if $background-color and $background-color != $base-background-color {
+        background-color: $background-color;
+    }
+}
+
+/* Vertical centering mixin
+ *
+ * This mixin allows content to be centered within a container element:
+ *
+ *     .my-container-class {
+ *         @include vertical-center ('.my-child-element');
+ *     }
+ *
+ * NOTE: depending on font-size and font-family, you might need to adjust
+ * the pseudo-element's left margin:
+ *
+ *     .my-container-class {
+ *         @include vertical-center ('.my-child-element', -0.3em);
+ *     }
+ */
+@mixin vertical-center ($element, $margin-left: -0.25em) {
+    &:before,
+    > #{$element} {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &:before {
+        content: '';
+        margin-left: $margin-left;
+        width: 0;
+        height: 100%;
+    }
+}
+
+/* Text inputs mixin
+ *
+ * This mixin allows to style all textual inputs with a simple selector:
+ *
+ *     @include text-input {
+ *         color: #ccc;
+ *     }
+ *
+ * Currently includes text, password, email, number, search, tel and url input
+ * types
+ */
+@mixin text-input {
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="url"] {
+        @content;
+    }
+}
+
+/* Clearfix mixin
+ *
+ * Extend this to get a clearfix after element:
+ *
+ *     .my-element {
+ *         @extend %clearfix;
+ *     }
+ */
+%clearfix {
+    &:after {
+        content:"";
+        display: table;
+        clear: both;
+    }
+}
+
+/* List-reset mixin
+ *
+ * Extend this to reset a list element (ul, ol etc):
+ *
+ *     ul.my-list {
+ *         @extend list-reset;
+ *     }
+ */
+%list-reset {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Responsive styles mixin
+ *
+ * This mixin allows to style the element for certain devices. Developers are
+ * meant to edit available devices (their names and media queries) within the
+ * mixin before using it in their styles:
+ *
+ *     .my-element {
+ *         width: 940px;
+ *         margin: 0 auto;
+ *
+ *         @include respond(tablet) {
+ *             // Stretch to full width on tablets
+ *             width: auto;
+ *             margin: 0 10px;
+ *         }
+ *     }
+ */
+@mixin respond($device) {
+
+    @if $device == tablet {
+        @media all and (max-width: 1100px) and (min-width: 950px) {
+            @content;
+        }
+    }
+
+    @else if $device == mobile {
+        @media all and (max-width: 949px) {
+            @content;
+        }
+    }
+
+    @else if $device == iphone {
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-device-pixel-ratio: 2) {
+            @content;
+        }
+    }
+}
+
+/* Font-face mixin
+ *
+ * Taken from: https://github.com/thoughtbot/bourbon/blob/master/app/assets/stylesheets/css3/_font-face.scss
+ * Order of the includes matters, and it is: normal, bold, italic, bold+italic.
+ *
+ */
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false ) {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: $style;
+
+    @if $asset-pipeline == true {
+      src: font-url('#{$file-path}.eot');
+      src: font-url('#{$file-path}.eot?#iefix')          format('embedded-opentype'),
+           font-url('#{$file-path}.woff')                format('woff'),
+           font-url('#{$file-path}.ttf')                 format('truetype'),
+           font-url('#{$file-path}.svg##{$font-family}') format('svg');
+    } @else {
+      src: url('#{$file-path}.eot');
+      src: url('#{$file-path}.eot?#iefix')               format('embedded-opentype'),
+           url('#{$file-path}.woff')                     format('woff'),
+           url('#{$file-path}.ttf')                      format('truetype'),
+           url('#{$file-path}.svg##{$font-family}')      format('svg');
+    }
+  }
+}

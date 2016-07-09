@@ -1,0 +1,29 @@
+/* Barebones Compass layout styles
+ *
+ * General layout styles
+ */
+
+.layout-content {
+    margin: 0 20px;
+}
+
+/* Default layout container width
+ *
+ * NOTE: This should not be changed here. Change it in base/_variable.scss
+ *
+ * @see base/_variable.scss
+ */
+$layout-container-width: 940px !default;
+
+.layout-container {
+    width: $layout-container-width;
+    margin: 0 auto;
+
+    @extend %clearfix;
+}
+
+.layout-container-fluid {
+    margin: 0 auto;
+
+    @extend %clearfix;
+}

@@ -1,0 +1,11 @@
+/* Barebones Compass layout styles
+ *
+ * Aside styles
+ */
+
+.layout-aside {
+    display: inline-block;
+    width: $layout-aside-width;
+    float: left;
+    margin-right: $layout-aside-margin-right;
+}

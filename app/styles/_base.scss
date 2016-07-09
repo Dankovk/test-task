@@ -1,0 +1,30 @@
+/* Barebones Compass base styles
+ *
+ * This file provides base styles, mixins and variables, used throughout the
+ * project
+ *
+ * See individual included files for more info
+ *
+ * NOTE: This file is not meant to contain any rules directly
+ */
+
+// Normalize
+@import "../vendor/inuit-normalize/generic.normalize";
+
+// Project fonts and font stacks
+@import "base/font";
+
+// Project variables and settings
+@import "base/variable";
+
+// Functions
+@import "base/function";
+
+// Mixins
+@import "base/mixin";
+@import "base/mixin/link";
+@import "base/mixin/triangle";
+@import "base/mixin/button";
+
+// Icons
+@import "base/icons";

@@ -1,0 +1,144 @@
+/* Barebones Compass element styles
+ *
+ * General element styles
+ */
+
+/* Html styles
+ *
+ * Html uses base styles, which are inherited globally
+ */
+html {
+    color: $base-color;
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+
+    // Font smoothing OSX
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @if $base-font-style != normal {
+        font-style: $base-font-style;
+    }
+
+    @if $base-font-weight != normal and $base-font-weight != 400 {
+        font-weight: $base-font-weight;
+    }
+
+    line-height: $base-line-height;
+
+    background-color: $base-background-color;
+
+    // http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+    box-sizing: border-box;
+
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+}
+
+::selection {
+    color: #fff;
+    background-color: #177ee6;
+}
+
+/* Custom element styles
+ */
+p {
+    margin: $base-margin 0;
+}
+
+figure {
+    text-align: center;
+
+    margin: $base-margin * 1.5 0;
+
+    img {
+        margin: 0 auto;
+
+        display: block;
+        max-width: 100%;
+    }
+}
+
+figcaption {
+    margin: $base-margin * 0.5 0;
+}
+
+hr {
+    margin: $base-margin 0;
+
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.inlineblock{
+    display: inline-block !important;
+}
+.block{
+    display: block !important;
+}
+.floatright{
+    float: right !important;
+}
+.floatleft{
+    float: left !important;
+}
+.clearfix{
+    @extend %clearfix;
+}
+.nomargin{
+    margin: 0 !important;
+}
+.nopadding{
+    padding: 0 !important;
+}
+
+.separator10{
+    display: block;
+    width: 100%;
+    height: 10px;
+}
+.separator20{
+    display: block;
+    width: 100%;
+    height: 20px;
+}
+.separator30{
+    display: block;
+    width: 100%;
+    height: 30px;
+}
+.separator35{
+    display: block;
+    width: 100%;
+    height: 35px;
+}
+.separator40{
+    display: block;
+    width: 100%;
+    height: 40px;
+}
+.separator50{
+    display: block;
+    width: 100%;
+    height: 50px;
+}
+.separator100{
+    display: block;
+    width: 100%;
+    height: 100px;
+}
+.vTop{
+    vertical-align: top !important;
+}
+.vMiddle{
+    vertical-align:middle !important; 
+}
+.vBottom{
+    vertical-align: bottom !important;
+}
+.caps{
+    text-transform: uppercase !important;
+}

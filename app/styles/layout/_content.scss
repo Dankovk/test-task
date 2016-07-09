@@ -1,0 +1,14 @@
+/* Barebones Compass layout styles
+ *
+ * Content styles
+ */
+
+.layout-content {
+    @if ($layout-header-fixed != false) {
+        padding-top: $layout-header-height + 20px;
+    }
+}
+
+.layout-aside + .layout-content {
+    margin-left: $layout-aside-width + $layout-aside-margin-right;
+}

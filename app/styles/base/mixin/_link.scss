@@ -1,0 +1,134 @@
+/* Barebones Compass link mixins
+ *
+ * Contains custom link mixins in use within the project
+ *
+ * See individual mixins for more info
+ */
+
+/* Link transitions
+ *
+ * Set to false to disable link transitions
+ */
+$link-transitions: true !default;
+
+/* Link transition duration
+ *
+ * Defines link transition duration
+ */
+$link-transition-duration: .15s !default;
+
+/* Link transition function
+ *
+ * Defines link transition function
+ */
+$link-transition-function: linear !default;
+
+/* Basic link mixin
+ *
+ * Defines font colors for basic link states: visited, hover and active. By
+ * default, focus state is the same as hover state, but you can set a different
+ * color for focus state
+ *
+ * @uses $link-transitions
+ * @uses $link-transition-duration
+ * @uses $link-transition-function
+ */
+@mixin link-basic ($normal, $hover: false, $active: false, $visited: false, $focus: $hover) {
+    color: $normal;
+
+    @if $link-transitions {
+        transition: color $link-transition-duration $link-transition-function;
+    }
+
+    @if $visited {
+        &:visited {
+            color: $visited;
+        }
+    }
+
+    @if $hover {
+        @if $hover == $focus {
+            &:hover,
+            &:focus {
+                color: $hover;
+            }
+        } @else {
+            &:hover {
+                color: $hover;
+            }
+            &:focus {
+                color: $focus;
+            }
+        }
+    } @else if $focus {
+        &:focus {
+            color: $focus;
+        }
+    }
+
+    @if $active {
+        &:active {
+            color: $active;
+        }
+    }
+}
+
+/* Bordered link mixin
+ *
+ * Defines font and bottom border colors for basic link states: visited, hover
+ * and active. By default, focus state is the same as hover state, but you can
+ * set a different color for focus state
+ *
+ * @uses $link-transitions
+ * @uses $link-transition-duration
+ * @uses $link-transition-function
+ */
+@mixin link-bordered ($normal, $hover: false, $active: false, $visited: false, $focus: $hover, $style: solid, $width: 1px) {
+    color: $normal;
+    text-decoration: none;
+
+    border-bottom-style: $style;
+    border-bottom-width: $width;
+
+    @if $link-transitions {
+        transition: color $link-transition-duration $link-transition-function, border-bottom-color $link-transition-duration $link-transition-function;
+    }
+
+    @if $visited {
+        &:visited {
+            color: $visited;
+            border-bottom-color: $visited;
+        }
+    }
+
+    @if $hover {
+        @if $hover == $focus {
+            &:hover,
+            &:focus {
+                color: $hover;
+                border-bottom-color: $hover;
+            }
+        } @else {
+            &:hover {
+                color: $hover;
+                border-bottom-color: $hover;
+            }
+            &:focus {
+                color: $focus;
+                border-bottom-color: $focus;
+            }
+        }
+    } @else if $focus {
+        &:focus {
+            color: $focus;
+            border-bottom-color: $focus;
+        }
+    }
+
+    @if $active {
+        &:active {
+            color: $active;
+            border-bottom-color: $active;
+        }
+    }
+}
