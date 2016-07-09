@@ -5,7 +5,7 @@ import * as actionCreators from './actions/ActionCreators';
 
 function mapStateToProps(state){
     return{
-        works: state.works
+        data: state.data
     }
 };
 function mapDispatchToProps(dispatch){

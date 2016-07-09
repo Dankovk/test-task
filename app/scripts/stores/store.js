@@ -4,13 +4,11 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import rootReducer from '../reducers/index.js'
-
-import works from '../data/works';
-
+import data from '!json!../data/data.json';
 
 
 const persistedState = {
-    works
+    data
 };
 
 

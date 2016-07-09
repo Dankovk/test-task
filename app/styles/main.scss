@@ -17,40 +17,6 @@
 // Vendor
 @import "../vendor/selectize-scss/src/selectize.scss";
 @import "../vendor/selectize-scss/src/selectize.default.scss";
-@import "../vendor/bootstrap-sass/assets/stylesheets/bootstrap/variables";
-@import "../vendor/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
-@import "../vendor/bootstrap-sass/assets/stylesheets/bootstrap/carousel";
-@import "../vendor/bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
+@import "../vendor/bootstrap-sass/assets/stylesheets/bootstrap";
 
-// Elements
-@import "element";
-@import "element/link";
-@import "element/header";
-@import "element/list";
-@import "element/table";
 
-// Forms
-@import "form";
-@import "form/field";
-@import "form/validation";
-@import "form/button";
-
-// Components
-@import "component";
-@import "component/scrollsize";
-
-// Standalone blocks
-@import "block";
-@import "block/guilist";
-// @import "block/blockname";
-
-// Layout styles
-@import "layout";
-@import "layout/grid";
-@import "layout/header";
-@import "layout/aside";
-@import "layout/content";
-@import "layout/footer";
-
-// Content styles
-@import "content";

@@ -1,7 +1,7 @@
 
 let defaultState = {loading:false, data:null, error:null};
 
-function works (state = defaultState, action){
+function data (state = defaultState, action){
     switch (action.type){
         case 'WORKS_CHANGED':
             console.log('changed');
@@ -9,4 +9,4 @@ function works (state = defaultState, action){
     }
     return state
 }
-export default works;
+export default data;

@@ -6,7 +6,7 @@ const App = (props) => {
       <div>
         <Header />
         <div className="content">
-          <h1>Test</h1>
+            {React.cloneElement(props.children, props)}
         </div>
       </div>
     );
