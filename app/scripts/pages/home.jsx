@@ -21,7 +21,8 @@ class Home extends React.Component {
       projectionRange: {
         min:0,
         max:100
-      }
+      },
+      checkedPos: 'ALL'
     };
   }
 
@@ -46,6 +47,11 @@ class Home extends React.Component {
         }
     });
 
+  }
+
+
+  currentPos(field){
+    this.setState({checkedPos:field});
   }
 
 
@@ -148,10 +154,14 @@ class Home extends React.Component {
   render() {
     let self = this;
     let provider = self.currentProvider();
+    let checkedPos = this.state.checkedPos;
     let playersSorted = this.players.map((item, i)=>{
-      return(
-        <Player projection={this.players[i][provider].projection.new} salary={this.players[i][provider].salary} key={i} provider={provider} data={this.players[i]}/>
-      )
+      if ((this.players[i].pos[provider] == checkedPos || checkedPos == "ALL") && checkedPos !== "UNTIL") {
+        return (
+            <Player projection={this.players[i][provider].projection.new} salary={this.players[i][provider].salary}
+                    key={i} provider={provider} data={this.players[i]}/>
+        )
+      }
     });
     return (
         <div className="container">
@@ -192,7 +202,7 @@ class Home extends React.Component {
               </div>
               <div className="row">
                 <div className="col-xs-12">
-                  <h2>Projection</h2>
+                  <h3>Projection</h3>
                 </div>
                 <div className="col-xs-12">
                   <InputRange
@@ -215,6 +225,54 @@ class Home extends React.Component {
           <div className="row">
             <div className="col-xs-12">
               <div className="padding-div"></div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12">
+              <label htmlFor="allFilter">All</label>
+              <input id="allFilter" name="pos" onChange={()=>{
+                    this.currentPos('ALL');
+                  }} type="radio"/>
+
+              <label htmlFor="pgFilter">PG</label>
+              <input id="pgFilter" name="pos" onChange={()=>{
+                    this.currentPos('PG');
+                  }} type="radio"/>
+
+              <label htmlFor="sgFilter">SG</label>
+              <input id="sgFilter" name="pos" onChange={()=>{
+                    this.currentPos('SG');
+                  }} type="radio"/>
+
+              <label htmlFor="gFilter">G</label>
+              <input id="gFilter" name="pos" onChange={()=>{
+                    this.currentPos('G');
+                  }} type="radio"/>
+
+              <label htmlFor="sfFilter">SF</label>
+              <input id="sfFilter" name="pos" onChange={()=>{
+                    this.currentPos('SF');
+                  }} type="radio"/>
+
+              <label htmlFor="pfFilter">PF</label>
+              <input id="pfFilter" name="pos" onChange={()=>{
+                    this.currentPos('PF');
+                  }} type="radio"/>
+
+              <label htmlFor="pfFilter">F</label>
+              <input id="pfFilter" name="pos" onChange={()=>{
+                    this.currentPos('F');
+                  }} type="radio"/>
+
+              <label htmlFor="pfFilter">C</label>
+              <input id="pfFilter" name="pos" onChange={()=>{
+                    this.currentPos('C');
+                  }} type="radio"/>
+
+              <label htmlFor="untilFilter">Until</label>
+              <input id="untilFilter" name="pos" onChange={()=>{
+                    this.currentPos('UNTIL');
+                  }} type="radio"/>
             </div>
           </div>
           <div className="row">
