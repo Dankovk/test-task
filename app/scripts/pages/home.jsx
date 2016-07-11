@@ -25,14 +25,15 @@ class Home extends React.Component {
     }
     let newSort = this.players.sort(compare);
     this.props.changeSort(newSort);
+    this.forceUpdate();
   }
 
-  //componentWillUnmount() {
-  //  this.unsubscribe();
-  //}
-  //onStatusChange(state) {
-  //  this.setState(state);
-  //}
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+  onStatusChange(state) {
+    this.setState(state);
+  }
 
   render() {
     let playersSorted = this.players.map((item, i)=>{
@@ -62,32 +63,12 @@ class Home extends React.Component {
             <div className="col-sm-6">
               <div className="row">
                 <div className="col-xs-12">
-                  <RangeSlider
-                      min={1}
-                      max={15000}
-                      minRange={10}
-                      className = 'range-slider'
-                      onChange={(state)=>{
-                  console.log('react-dual-rangeslider max: ', state.max);
-                  console.log('react-dual-rangeslider min: ', state.min);
-                   }}
-                      step={1}
-                  />
+
                 </div>
               </div>
              <div className="row">
                <div className="col-xs-12">
-                 <RangeSlider
-                     min={0}
-                     max={200}
-                     minRange={10}
-                     className = 'range-slider'
-                     onChange={(state)=>{
-                  console.log('react-dual-rangeslider max: ', state.max);
-                  console.log('react-dual-rangeslider min: ', state.min);
-                   }}
-                     step={1}
-                 />
+
                </div>
              </div>
             </div>
@@ -119,7 +100,7 @@ class Home extends React.Component {
                 </tr>
                 </thead>
                 <tbody>
-                  {playersSorted}
+                {playersSorted}
                 </tbody>
               </table>
             </div>

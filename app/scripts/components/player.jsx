@@ -8,14 +8,14 @@ export default class Player extends React.Component{
       this.pos = props.data.pos;
       this.projectedStats = props.data.projectedStats;
       this.dfsSite = 'DRAFTKINGS';
-      this.state = {
-          min: this.data.projectedStats.minutes.default,
-          ur:this.data.projectedStats.usageRate.default,
-          rr:this.data.projectedStats.reboundRate.default,
-          ar:this.data.projectedStats.assistsRate.default,
-          man_ea:this.data.manualEffAdj.new,
-          proj:this.data.draftkings.projection.new
-        }
+      //this.state = {
+      //    min: this.data.projectedStats.minutes.default,
+      //    ur:this.data.projectedStats.usageRate.default,
+      //    rr:this.data.projectedStats.reboundRate.default,
+      //    ar:this.data.projectedStats.assistsRate.default,
+      //    man_ea:this.data.manualEffAdj.new,
+      //    proj:this.data.draftkings.projection.new
+      //  }
       }
     calculateProj(){
         let min = parseFloat(this.refs.min.value),
@@ -35,35 +35,38 @@ export default class Player extends React.Component{
     }
   render(){
       let self = this;
+      let data = this.props.data;
+      let pos = data.pos;
+      let projectedStates = data.projectedStats;
       return(
           <tr>
               <td></td>
               <td></td>
-              <td>{this.data.player}</td>
-              <td>{this.pos.draftkings}</td>
-              <td>{this.data.team}</td>
-              <td>{this.data.opp}</td>
-              <td><input type="text" defaultValue={this.data.effectivePos.new}/></td>
+              <td>{data.player}</td>
+              <td>{pos.draftkings}</td>
+              <td>{data.team}</td>
+              <td>{data.opp}</td>
+              <td><input type="text" defaultValue={data.effectivePos.new}/></td>
               <td><input onChange={function(){
                  self.calculateProj();
-              }} ref="min" type="text" defaultValue={this.data.projectedStats.minutes.default}/></td>
+              }} ref="min" type="text" defaultValue={data.projectedStats.minutes.default}/></td>
               <td><input onChange={function(){
                  self.calculateProj();
-              }} ref="ur" type="text" defaultValue={this.data.projectedStats.usageRate.default}/></td>
+              }} ref="ur" type="text" defaultValue={data.projectedStats.usageRate.default}/></td>
               <td><input onChange={function(){
                  self.calculateProj();
-              }} ref="rr" type="text" defaultValue={this.data.projectedStats.reboundRate.default}/></td>
+              }} ref="rr" type="text" defaultValue={data.projectedStats.reboundRate.default}/></td>
               <td><input onChange={function(){
                  self.calculateProj();
-              }} ref="ar" type="text" defaultValue={this.data.projectedStats.assistsRate.default}/></td>
+              }} ref="ar" type="text" defaultValue={data.projectedStats.assistsRate.default}/></td>
               <td><input onChange={function(){
                  self.calculateProj();
-              }} ref="man_ea" type="text" defaultValue={this.data.manualEffAdj.new}/></td>
-              <td>{this.state.proj}</td>
-              <td>{this.dfsSite}</td>
-              <td>{this.data.draftkings.salary}</td>
-              <td>{this.data.draftkings.valueTreshold}</td>
-              <td>{this.data.draftkings.value.new}</td>
+              }} ref="man_ea" type="text" defaultValue={data.manualEffAdj.new}/></td>
+              <td>{data.player}</td>
+              <td>{'drafkings'}</td>
+              <td>{data.draftkings.salary}</td>
+              <td>{data.draftkings.valueTreshold}</td>
+              <td>{data.draftkings.value.new}</td>
           </tr>
       )
   }
