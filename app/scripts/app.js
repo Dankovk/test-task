@@ -5,7 +5,8 @@ import * as actionCreators from './actions/ActionCreators';
 
 function mapStateToProps(state){
     return{
-        data: state.data
+        data: state.data,
+        sortTable: state.sortTable
     }
 };
 function mapDispatchToProps(dispatch){

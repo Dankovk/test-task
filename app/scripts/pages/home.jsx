@@ -1,35 +1,97 @@
 import React from 'react';
 
 import Player from '../components/player.jsx';
+import RangeSlider from '../components/range-slider';
 
 
 class Home extends React.Component {
   
   constructor(props){
     super(props);
-    this.players = this.props.data.players;
-    
+    this.players = this.props.sortTable;
   }
 
   componentDidMount() {
   }
+  projSort(){
+    function compare(a,b){
+      if(a.draftkings.projection.new < b.draftkings.projection.new){
+        return -1;
+      }
+      if(a.draftkings.projection.new > b.draftkings.projection.new){
+        return 1;
+      }
+      return 0;
+    }
+    let newSort = this.players.sort(compare);
+    this.props.changeSort(newSort);
+  }
 
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-  onStatusChange(state) {
-    this.setState(state);
-  }
+  //componentWillUnmount() {
+  //  this.unsubscribe();
+  //}
+  //onStatusChange(state) {
+  //  this.setState(state);
+  //}
 
   render() {
-    let players = this.players.map((item, i)=>{
+    let playersSorted = this.players.map((item, i)=>{
       return(
-        <Player key={i} data={this.players[i]}/>
+        <Player  key={i} data={this.players[i]}/>
       )
     });
+    let self = this;
 
     return (
         <div className="container">
+          <div className="row">
+            <div className="col-sm-4">
+              <label htmlFor="draftkingsFilter">Drafkings</label>
+              <input id="draftkingsFilter" name="source" onChange={function(){
+                self.props.changeSource({draftkings:true, fantasyaces:false, fanduel:false})
+              }} type="radio" ref="draftkingsFilter"/>
+              <label htmlFor="fantasyacesFilter">Fantasyaces</label>
+              <input id="fantasyacesFilter" name="source"  onChange={function(){
+                self.props.changeSource({draftkings:false, fantasyaces:true, fanduel:false})
+              }} type="radio" ref="fantasyacesFilter"/>
+              <label htmlFor="fanduelFilter">Fanduel</label>
+              <input id="fanduelFilter" name="source"  onChange={function(){
+                self.props.changeSource({draftkings:false, fantasyaces:false, fanduel:true})
+              }} type="radio" ref="fanduelFilter"/>
+            </div>
+            <div className="col-sm-6">
+              <div className="row">
+                <div className="col-xs-12">
+                  <RangeSlider
+                      min={1}
+                      max={15000}
+                      minRange={10}
+                      className = 'range-slider'
+                      onChange={(state)=>{
+                  console.log('react-dual-rangeslider max: ', state.max);
+                  console.log('react-dual-rangeslider min: ', state.min);
+                   }}
+                      step={1}
+                  />
+                </div>
+              </div>
+             <div className="row">
+               <div className="col-xs-12">
+                 <RangeSlider
+                     min={0}
+                     max={200}
+                     minRange={10}
+                     className = 'range-slider'
+                     onChange={(state)=>{
+                  console.log('react-dual-rangeslider max: ', state.max);
+                  console.log('react-dual-rangeslider min: ', state.min);
+                   }}
+                     step={1}
+                 />
+               </div>
+             </div>
+            </div>
+          </div>
           <div className="row">
             <div className="col-sm-12">
               <table className="table">
@@ -47,7 +109,9 @@ class Home extends React.Component {
                   <th>RR</th>
                   <th>AR</th>
                   <th>MAN EA</th>
-                  <th>PROJ.</th>
+                  <th onClick={function(){
+                    self.projSort();
+                  }}>PROJ.</th>
                   <th>DFS SITE</th>
                   <th>SAL</th>
                   <th>VAL THR</th>
@@ -55,7 +119,7 @@ class Home extends React.Component {
                 </tr>
                 </thead>
                 <tbody>
-                  {players}
+                  {playersSorted}
                 </tbody>
               </table>
             </div>

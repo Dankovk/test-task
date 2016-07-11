@@ -51,12 +51,14 @@
     "postcss-easings": "^0.3.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
+    "react-dual-rangeslider": "^1.2.15",
     "react-redux": "^4.4.5",
     "react-router": "^2.0.0",
     "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
-    "reflux": "^0.3.0"
+    "reflux": "^0.3.0",
+    "underscore": "^1.8.3"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",

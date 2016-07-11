@@ -1,8 +1,9 @@
 import React from 'react';
 
+
 export default class Player extends React.Component{
   constructor(props){
-    super();
+    super(props);
       this.data = props.data;
       this.pos = props.data.pos;
       this.projectedStats = props.data.projectedStats;
@@ -17,18 +18,21 @@ export default class Player extends React.Component{
         }
       }
     calculateProj(){
-        let min = this.refs.min.value,
-            ur = this.refs.ur.value,
-            rr = this.refs.rr.value,
-            ar = this.refs.ar.value,
-            man_ea = this.refs.man_ea.value,
+        let min = parseFloat(this.refs.min.value),
+            ur = parseFloat(this.refs.ur.value),
+            rr = parseFloat(this.refs.rr.value),
+            ar = parseFloat(this.refs.ar.value),
+            man_ea = parseFloat(this.refs.man_ea.value),
             max_r = Math.max(ur, rr, ar);
         const proj = min * man_ea * (ur+rr+ar) / 3 / max_r;
-        this.setState({
-            proj:proj
-        });
+        if(!isNaN(proj)){
+            this.setState({
+                proj:proj
+            });
+        }
     }
-
+    componentDidUpdate(){
+    }
   render(){
       let self = this;
       return(

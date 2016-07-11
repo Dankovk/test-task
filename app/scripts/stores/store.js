@@ -8,7 +8,8 @@ import data from '!json!../data/data.json';
 
 
 const persistedState = {
-    data
+    data,
+    sortTable:data.players
 };
 
 
