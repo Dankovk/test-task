@@ -41,7 +41,7 @@ export default class Player extends React.Component{
       let defaultProj = this.defaultProj();
       let provider = this.props.provider;
       return(
-          <tr>
+          <tr data-projection={this.props.projection} data-salary={this.props.salary}>
               <td></td>
               <td></td>
               <td>{data.player}</td>

@@ -11,3 +11,9 @@ export function changeSort(data){
         data: data
     }
 }
+export function changeSalary(salary){
+    return{
+        type:'SALARY_CHANGED',
+        salary: salary
+    }
+}

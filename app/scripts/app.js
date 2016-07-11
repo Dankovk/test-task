@@ -7,7 +7,8 @@ function mapStateToProps(state){
     return{
         data: state.data,
         sortTable: state.sortTable,
-        source: state.source
+        source: state.source,
+        salary: state.salary
     }
 };
 function mapDispatchToProps(dispatch){

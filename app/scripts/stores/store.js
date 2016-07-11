@@ -7,7 +7,6 @@ import rootReducer from '../reducers/index.js'
 import data from '!json!../data/data.json';
 import { defaultSource } from "../reducers/source";
 
-
 const persistedState = {
     data,
     sortTable:data.players,

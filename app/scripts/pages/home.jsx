@@ -1,7 +1,10 @@
 import React from 'react';
+import jQuery from 'jquery';
+var $ = jQuery;
+
 
 import Player from '../components/player.jsx';
-import RangeSlider from '../components/range-slider';
+import InputRange from 'react-input-range';
 
 
 class Home extends React.Component {
@@ -10,11 +13,39 @@ class Home extends React.Component {
     super(props);
     this.players = this.props.sortTable;
     this.state = {
-      sortUpToDownDirection: false
-    }
+      sortUpToDownDirection: false,
+      salaryRange: {
+        min:0,
+        max:15000
+      },
+      projectionRange: {
+        min:0,
+        max:100
+      }
+    };
   }
 
-  componentDidMount() {
+  //TODO optimize when salary not updated
+
+  componentDidUpdate() {
+
+    //UPDATING SALARY VIEW
+
+    let self = this;
+    let players = $('tr');
+    players.each(function(index, elem){
+      let $elem = $(elem);
+        if($elem.attr('data-salary') < self.state.salaryRange.min || $elem.attr('data-salary') > self.state.salaryRange.max || $elem.attr('data-projection') < self.state.projectionRange.min || $elem.attr('data-projection') > self.state.projectionRange.max){
+          $(elem).css({
+            display:'none'
+          })
+        } else{
+          $(elem).css({
+            display:'table-row'
+          })
+        }
+    });
+
   }
 
 
@@ -82,34 +113,46 @@ class Home extends React.Component {
 
     this.forceUpdate();
   }
+
+  changeSalary(component, values){
+    this.setState({
+      salaryRange: values
+    });
+    this.props.changeSalary(this.state.salaryRange);
+  }
+
+  changeProjection(component, values){
+    this.setState({
+      projectionRange:values
+    });
+  }
+
   componentWillUnmount() {
     this.unsubscribe();
   }
   onStatusChange(state) {
-    this.setState(state);
   }
   currentProvider (){
     let self = this;
-    if(self.props.source.draftkings){
+
+    if (self.props.source.draftkings) {
       return 'draftkings';
-    }else if(self.props.source.fanduel){
+    } else if(self.props.source.fanduel) {
       return 'fanduel';
-    }else{
+    } else {
       return 'fantasyaces'
     }
+
   }
 
   render() {
     let self = this;
-
     let provider = self.currentProvider();
     let playersSorted = this.players.map((item, i)=>{
       return(
-        <Player  key={i} provider={provider} data={this.players[i]}/>
+        <Player projection={this.players[i][provider].projection.new} salary={this.players[i][provider].salary} key={i} provider={provider} data={this.players[i]}/>
       )
     });
-
-    console.log(self.props.source);
     return (
         <div className="container">
           <div className="row">
@@ -117,17 +160,16 @@ class Home extends React.Component {
               <div className="padding-div"></div>
               <label htmlFor="draftkingsFilter">Drafkings</label>
               <input id="draftkingsFilter" name="source" onChange={function(){
-                self.props.changeSource({draftkings:true, fantasyaces:false, fanduel:false})
+                self.props.changeSource({draftkings:true, fantasyaces:false, fanduel:false});
               }} type="radio" ref="draftkingsFilter"/>
               <label htmlFor="fantasyacesFilter">Fantasyaces</label>
               <input id="fantasyacesFilter" name="source"  onChange={function(){
-                    self.props.changeSource({draftkings:false, fantasyaces:true, fanduel:false})
-                    self.forceUpdate()
+                    self.props.changeSource({draftkings:false, fantasyaces:true, fanduel:false});
 
               }} type="radio" ref="fantasyacesFilter"/>
               <label htmlFor="fanduelFilter">Fanduel</label>
               <input id="fanduelFilter" name="source"  onChange={function(){
-                self.props.changeSource({draftkings:false, fantasyaces:false, fanduel:true})
+                self.props.changeSource({draftkings:false, fantasyaces:false, fanduel:true});
               }} type="radio" ref="fanduelFilter"/>
             </div>
             <div className="col-sm-6">
@@ -138,14 +180,29 @@ class Home extends React.Component {
               </div>
               <div className="row">
                 <div className="col-xs-12">
-                  <RangeSlider
-                      min={0}
-                      max={15000}
-                      minRange={10}
-                      onChange={(state)=>{
-                      console.log('react-dual-rangeslider max: ', state.max);
-                      console.log('react-dual-rangeslider min: ', state.min);
-                  }}/>
+                  <InputRange
+                      key="salary"
+                      maxValue={15000}
+                      minValue={0}
+                      step = {1000}
+                      value={self.state.salaryRange}
+                      onChange={this.changeSalary.bind(this)}
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12">
+                  <h2>Projection</h2>
+                </div>
+                <div className="col-xs-12">
+                  <InputRange
+                      key = 'projection'
+                      maxValue={100}
+                      minValue={0}
+                      step = {5}
+                      value={self.state.projectionRange}
+                      onChange={this.changeProjection.bind(this)}
+                  />
                 </div>
               </div>
              <div className="row">
