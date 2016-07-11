@@ -10,7 +10,7 @@ export default class Player extends React.Component{
       this.dfsSite = 'DRAFTKINGS';
       this.state = {
           changed: false,
-          proj:props.data.draftkings.projection.new
+          proj:props.data[this.props.provider].projection.new
         }
       }
     defaultProj(props){
@@ -67,7 +67,7 @@ export default class Player extends React.Component{
               <td>{ (this.state.changed)? this.state.proj : defaultProj   }</td>
               <td>{provider}</td>
               <td>{data[provider].salary}</td>
-              <td>{data[provider].valueTreshold}</td>
+              <td>{data[provider].valueThreshold}</td>
               <td>{data[provider].value.new}</td>
           </tr>
       )
