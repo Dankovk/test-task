@@ -42,6 +42,7 @@ class Home extends React.Component {
       )
     });
     let self = this;
+    console.log(self.props.source)
 
     return (
         <div className="container">

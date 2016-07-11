@@ -5,11 +5,13 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import rootReducer from '../reducers/index.js'
 import data from '!json!../data/data.json';
+import { defaultSource } from "../reducers/source";
 
 
 const persistedState = {
     data,
-    sortTable:data.players
+    sortTable:data.players,
+    source: {draftkings:true, fantasyaces:false, fanduel:false}
 };
 
 

@@ -1,7 +1,6 @@
-import _ from "underscore";
-let defaultState = {draftkings:true, fantasyaces:false, fanduel:false};
+let defaultSource = {draftkings:true, fantasyaces:false, fanduel:false};
 
-function source (state = defaultState, action){
+function source (state = defaultSource, action){
     switch (action.type){
         case 'SOURCE_CHANGED':
             let state = Object.assign({},state, action.source);
@@ -11,3 +10,6 @@ function source (state = defaultState, action){
     return state
 }
 export default source;
+
+
+
