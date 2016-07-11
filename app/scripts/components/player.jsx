@@ -8,15 +8,14 @@ export default class Player extends React.Component{
       this.pos = props.data.pos;
       this.projectedStats = props.data.projectedStats;
       this.dfsSite = 'DRAFTKINGS';
-      //this.state = {
-      //    min: this.data.projectedStats.minutes.default,
-      //    ur:this.data.projectedStats.usageRate.default,
-      //    rr:this.data.projectedStats.reboundRate.default,
-      //    ar:this.data.projectedStats.assistsRate.default,
-      //    man_ea:this.data.manualEffAdj.new,
-      //    proj:this.data.draftkings.projection.new
-      //  }
+      this.state = {
+          changed: false,
+          proj:props.data.draftkings.projection.new
+        }
       }
+    defaultProj(props){
+        return this.props.data.draftkings.projection.new;
+    }
     calculateProj(){
         let min = parseFloat(this.refs.min.value),
             ur = parseFloat(this.refs.ur.value),
@@ -27,6 +26,7 @@ export default class Player extends React.Component{
         const proj = min * man_ea * (ur+rr+ar) / 3 / max_r;
         if(!isNaN(proj)){
             this.setState({
+                changed: true,
                 proj:proj
             });
         }
@@ -38,12 +38,14 @@ export default class Player extends React.Component{
       let data = this.props.data;
       let pos = data.pos;
       let projectedStates = data.projectedStats;
+      let defaultProj = this.defaultProj();
+      let provider = this.props.provider;
       return(
           <tr>
               <td></td>
               <td></td>
               <td>{data.player}</td>
-              <td>{pos.draftkings}</td>
+              <td>{pos[provider]}</td>
               <td>{data.team}</td>
               <td>{data.opp}</td>
               <td><input type="text" defaultValue={data.effectivePos.new}/></td>
@@ -62,11 +64,11 @@ export default class Player extends React.Component{
               <td><input onChange={function(){
                  self.calculateProj();
               }} ref="man_ea" type="text" defaultValue={data.manualEffAdj.new}/></td>
-              <td>{data.player}</td>
-              <td>{'drafkings'}</td>
-              <td>{data.draftkings.salary}</td>
-              <td>{data.draftkings.valueTreshold}</td>
-              <td>{data.draftkings.value.new}</td>
+              <td>{ (this.state.changed)? this.state.proj : defaultProj   }</td>
+              <td>{provider}</td>
+              <td>{data[provider].salary}</td>
+              <td>{data[provider].valueTreshold}</td>
+              <td>{data[provider].value.new}</td>
           </tr>
       )
   }

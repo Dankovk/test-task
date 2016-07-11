@@ -9,16 +9,18 @@ class Home extends React.Component {
   constructor(props){
     super(props);
     this.players = this.props.sortTable;
+
   }
 
   componentDidMount() {
   }
   projSort(){
+    let provider = 'draftkings';
     function compare(a,b){
-      if(a.draftkings.projection.new < b.draftkings.projection.new){
+      if(a[provider].projection.new < b.draftkings.projection.new){
         return -1;
       }
-      if(a.draftkings.projection.new > b.draftkings.projection.new){
+      if(a[provider].projection.new > b.draftkings.projection.new){
         return 1;
       }
       return 0;
@@ -36,14 +38,24 @@ class Home extends React.Component {
   }
 
   render() {
+    let self = this;
+    function currentProvider (){
+      if(self.props.source.draftkings){
+        return 'draftkings';
+      }else if(self.props.source.fanduel){
+        return 'fanduel';
+      }else{
+        return 'fantasyaces'
+      }
+    }
+    let provider = currentProvider();
     let playersSorted = this.players.map((item, i)=>{
       return(
-        <Player  key={i} data={this.players[i]}/>
+        <Player  key={i} provider={provider} data={this.players[i]}/>
       )
     });
-    let self = this;
-    console.log(self.props.source)
 
+    console.log(self.props.source);
     return (
         <div className="container">
           <div className="row">
@@ -54,7 +66,9 @@ class Home extends React.Component {
               }} type="radio" ref="draftkingsFilter"/>
               <label htmlFor="fantasyacesFilter">Fantasyaces</label>
               <input id="fantasyacesFilter" name="source"  onChange={function(){
-                self.props.changeSource({draftkings:false, fantasyaces:true, fanduel:false})
+                    self.props.changeSource({draftkings:false, fantasyaces:true, fanduel:false})
+                    self.forceUpdate()
+
               }} type="radio" ref="fantasyacesFilter"/>
               <label htmlFor="fanduelFilter">Fanduel</label>
               <input id="fanduelFilter" name="source"  onChange={function(){
